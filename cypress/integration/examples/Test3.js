@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
 describe('Third Test Suite', function () {
-  it('ThirdTest case', function () {
+  it('3rd Case, Web Controls UI', function () {
     //CheckBoxes
     cy.visit('https://rahulshettyacademy.com/AutomationPractice/');
     cy.get('#checkBoxOption1')
