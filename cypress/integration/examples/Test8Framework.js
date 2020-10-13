@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import HomePage from '../objects/HomePage';
 
 describe('Framework-1', () => {
   before(function () {
@@ -9,7 +10,12 @@ describe('Framework-1', () => {
   });
 
   it('Test8, Fixtures and Custom Commands', function () {
+    const homePage = new HomePage();
     cy.visit('https://rahulshettyacademy.com/angularpractice/');
+
+    homePage.getEditBox().type(this.data.name);
+    //Two way databinding
+    homePage.getGender().select(this.data.gender);
     cy.get('input[name="name"]:nth-child(2)').type(this.data.name);
     cy.get('select').select(this.data.gender);
     cy.get(':nth-child(4) > .ng-untouched').should(
@@ -25,6 +31,10 @@ describe('Framework-1', () => {
     cy.get(':nth-child(2) > .nav-link').click();
 
     //custom commands
-    cy.selectProduct('Blackberry');
+    //cy.selectProduct('Blackberry');
+    //cy.selectProduct('Nokia Edge');
+    this.data.productName.forEach((element) => {
+      cy.selectProduct(element);
+    });
   });
 });
